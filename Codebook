@@ -1,0 +1,232 @@
+
+
+The given data set includes following files. 
+README.txt
+features_info.txt: Shows information about the variables used on the feature vector.
+features.txt: List of all features.
+activity_labels.txt: Links the class labels with their activity name.
+train/X_train.txt: Training set.
+train/y_train.txt: Training labels.
+test/X_test.txt: Test set.
+test/y_test.txt: Test labels.
+
+Variables used in R script run_analysis.R
+
+xtrain <- reads the X_train data
+xtest <- reads the X_test data
+x <- binds xtrain and xtest
+
+subj.train <- reads subject_train data
+subj.test <- reads subject_test data
+subj <- binds sub.train and subj.test
+
+ytrain <- reads y_train data
+ytest <- reads y_test data
+y <-binds ytain and ytest
+
+features <- reads the features data
+mean.sd <- greps the variables that have the mean and the standard deviation in them
+xmean.sd <- x[, mean.sd]
+
+names(xmean.sd) <- convents the mean.sd into a tidy set
+
+activities <- reads activiy lables data set
+activities[, 2] <- converts the data to a tidy readable set
+
+colnames(y) <- 'activity'
+colnames(subj) <- 'subject'
+
+data <- binds subj, xmean.sd, y
+
+average.df <- aggregate(x=data, by=list(activities=data$activity, subj=data$subject), FUN=mean)
+average.df <- average.df[, !(colnames(average.df) %in% c("subj", "activity"))]
+str(average.df)
+
+write.table(average.df, './average.txt', row.names = F)
+
+Parameters / Variables in Tidy data set
+
+The parameters in the tidy data set are given below. These are already given in the descriptive fashion and further description/explanation of these parameters is not given.
+
+In general these variables can be interpreted in following way and can be extended to all variables. 
+
+TimeDomainBodyAccelerometer-mean()-X : Mean of time domain body acceleration in X direction. 
+TimeDomainBodyAccelerometer-StandardDeviation()-X : Standard deviation of time domain body acceleration in X direction, etc
+
+The acceleration signal from accelerometer X axis in standard gravity has unit 'g' and the angular velocity vector measured by the gyroscope has the unit radian/sec.
+
+Subject : Subject ID
+
+Activity : Activity performed by volunteer during gathering the data
+
+TimeDomainBodyAccelerometer-mean()-X
+
+TimeDomainBodyAccelerometer-mean()-Y
+
+TimeDomainBodyAccelerometer-mean()-Z
+
+TimeDomainBodyAccelerometer-StandardDeviation()-X
+
+TimeDomainBodyAccelerometer-StandardDeviation()-Y
+
+TimeDomainBodyAccelerometer-StandardDeviation()-Z
+
+TimeDomainGravityAccelerometer-mean()-X
+
+TimeDomainGravityAccelerometer-mean()-Y
+
+TimeDomainGravityAccelerometer-mean()-Z
+
+TimeDomainGravityAccelerometer-StandardDeviation()-X
+
+TimeDomainGravityAccelerometer-StandardDeviation()-Y
+
+TimeDomainGravityAccelerometer-StandardDeviation()-Z
+
+TimeDomainBodyAccelerometerJerk-mean()-X
+
+TimeDomainBodyAccelerometerJerk-mean()-Y
+
+TimeDomainBodyAccelerometerJerk-mean()-Z
+
+TimeDomainBodyAccelerometerJerk-StandardDeviation()-X
+
+TimeDomainBodyAccelerometerJerk-StandardDeviation()-Y
+
+TimeDomainBodyAccelerometerJerk-StandardDeviation()-Z
+
+TimeDomainBodyGyroscope-mean()-X
+
+TimeDomainBodyGyroscope-mean()-Y
+
+TimeDomainBodyGyroscope-mean()-Z
+
+TimeDomainBodyGyroscope-StandardDeviation()-X
+
+TimeDomainBodyGyroscope-StandardDeviation()-Y
+
+TimeDomainBodyGyroscope-StandardDeviation()-Z
+
+TimeDomainBodyGyroscopeJerk-mean()-X
+
+TimeDomainBodyGyroscopeJerk-mean()-Y
+
+TimeDomainBodyGyroscopeJerk-mean()-Z
+
+TimeDomainBodyGyroscopeJerk-StandardDeviation()-X
+
+TimeDomainBodyGyroscopeJerk-StandardDeviation()-Y
+
+TimeDomainBodyGyroscopeJerk-StandardDeviation()-Z
+
+TimeDomainBodyAccelerometerMagnitude-mean()
+
+TimeDomainBodyAccelerometerMagnitude-StandardDeviation()
+
+TimeDomainGravityAccelerometerMagnitude-mean()
+
+TimeDomainGravityAccelerometerMagnitude-StandardDeviation()
+
+TimeDomainBodyAccelerometerJerkMagnitude-mean()
+
+TimeDomainBodyAccelerometerJerkMagnitude-StandardDeviation()
+
+TimeDomainBodyGyroscopeMagnitude-mean()
+
+TimeDomainBodyGyroscopeMagnitude-StandardDeviation()
+
+TimeDomainBodyGyroscopeJerkMagnitude-mean()
+
+TimeDomainBodyGyroscopeJerkMagnitude-StandardDeviation()
+
+FrequencyDomainBodyAccelerometer-mean()-X
+
+FrequencyDomainBodyAccelerometer-mean()-Y
+
+FrequencyDomainBodyAccelerometer-mean()-Z
+
+FrequencyDomainBodyAccelerometer-StandardDeviation()-X
+
+FrequencyDomainBodyAccelerometer-StandardDeviation()-Y
+
+FrequencyDomainBodyAccelerometer-StandardDeviation()-Z
+
+FrequencyDomainBodyAccelerometer-meanFreq()-X
+
+FrequencyDomainBodyAccelerometer-meanFreq()-Y
+
+FrequencyDomainBodyAccelerometer-meanFreq()-Z
+
+FrequencyDomainBodyAccelerometerJerk-mean()-X
+
+FrequencyDomainBodyAccelerometerJerk-mean()-Y
+
+FrequencyDomainBodyAccelerometerJerk-mean()-Z
+
+FrequencyDomainBodyAccelerometerJerk-StandardDeviation()-X
+
+FrequencyDomainBodyAccelerometerJerk-StandardDeviation()-Y
+
+FrequencyDomainBodyAccelerometerJerk-StandardDeviation()-Z
+
+FrequencyDomainBodyAccelerometerJerk-meanFreq()-X
+
+FrequencyDomainBodyAccelerometerJerk-meanFreq()-Y
+
+FrequencyDomainBodyAccelerometerJerk-meanFreq()-Z
+
+FrequencyDomainBodyGyroscope-mean()-X
+
+FrequencyDomainBodyGyroscope-mean()-Y
+
+FrequencyDomainBodyGyroscope-mean()-Z
+
+FrequencyDomainBodyGyroscope-StandardDeviation()-X
+
+FrequencyDomainBodyGyroscope-StandardDeviation()-Y
+
+FrequencyDomainBodyGyroscope-StandardDeviation()-Z
+
+FrequencyDomainBodyGyroscope-meanFreq()-X
+
+FrequencyDomainBodyGyroscope-meanFreq()-Y
+
+FrequencyDomainBodyGyroscope-meanFreq()-Z
+
+FrequencyDomainBodyAccelerometerMagnitude-mean()
+
+FrequencyDomainBodyAccelerometerMagnitude-StandardDeviation()
+
+FrequencyDomainBodyAccelerometerMagnitude-meanFreq()
+
+FrequencyDomainBodyBodyAccelerometerJerkMagnitude-mean()
+
+FrequencyDomainBodyBodyAccelerometerJerkMagnitude- StandardDeviation()
+
+FrequencyDomainBodyBodyAccelerometerJerkMagnitude-meanFreq()
+
+FrequencyDomainBodyBodyGyroscopeMagnitude-mean()
+
+FrequencyDomainBodyBodyGyroscopeMagnitude-StandardDeviation()
+
+FrequencyDomainBodyBodyGyroscopeMagnitude-meanFreq()
+
+FrequencyDomainBodyBodyGyroscopeJerkMagnitude-mean()
+
+FrequencyDomainBodyBodyGyroscopeJerkMagnitude-StandardDeviation ()
+
+FrequencyDomainBodyBodyGyroscopeJerkMagnitude-meanFreq()
+
+angle(TimeDomainBodyAccelerometerMean,gravity)
+
+angle(TimeDomainBodyAccelerometerJerkMean),gravityMean)
+
+angle(TimeDomainBodyGyroscopeMean,gravityMean)
+
+angle(TimeDomainBodyGyroscopeJerkMean,gravityMean)
+
+angle(X,gravityMean)
+
+angle(Y,gravityMean)
+
+angle(Z,gravityMean)
